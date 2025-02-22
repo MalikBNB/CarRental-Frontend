@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "make": "Chevrolet",
+        "model": "Aveo",
+        "year": 2010,
+        "mileage": 55000,
+        "fuelType": "Hybrid",
+        "price": 2000,
+        "image": "https://placehold.co/400x250",
+        "isAvailableForRent": true
+    },
+    {
+        "id": 2,
+        "make": "Audi",
+        "model": "A6",
+        "year": 2019,
+        "mileage": 45000,
+        "fuelType": "Hybrid",
+        "price": 4500,
+        "image": "https://placehold.co/400x250",
+        "isAvailableForRent": true
+    },
+    {
+        "id": 3,
+        "make": "Golf",
+        "model": "Polo",
+        "year": 2022,
+        "mileage": 85000,
+        "fuelType": "Gasoline",
+        "price": 6000,
+        "image": "https://placehold.co/400x250",
+        "isAvailableForRent": false
+    },
+    {
+        "id": 4,
+        "make": "Tesla",
+        "model": "cx-75",
+        "year": 2025,
+        "mileage": 55000,
+        "fuelType": "Electric",
+        "price": 1500,
+        "image": "https://placehold.co/400x250",
+        "isAvailableForRent": true
+    }
+]

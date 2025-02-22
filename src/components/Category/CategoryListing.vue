@@ -21,7 +21,7 @@ defineProps({
       </div>
 
       <RouterLink
-        :to="'/category/' + category.name"
+        :to="'/vehicles/' + category.name"
         class="h-[36px] bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-center text-sm"
       >
         Show More
