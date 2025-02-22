@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Sidan",
+        "image": "https://placehold.co/400x250"
+    },
+    {
+        "id": 2,
+        "name": "Truck",
+        "image": "https://placehold.co/400x250"
+    },
+    {
+        "id": 3,
+        "name": "Van",
+        "image": "https://placehold.co/400x250"
+    },
+    {
+        "id": 4,
+        "name": "Minivan",
+        "image": "https://placehold.co/400x250"
+    }
+]
