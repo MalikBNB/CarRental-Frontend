@@ -22,7 +22,7 @@ defineProps({
         <h1 class="text-4x1 font-extrabold text-white sm:text-5xl md:text-6xl">
           {{ title }}
         </h1>
-        <p class="my-4 text-xl text-white">
+        <p class="my-4 text-xl text-white font-bold">
           {{ subtitle }}
         </p>
       </div>

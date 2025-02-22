@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineProps } from "vue";
+import { RouterLink } from "vue-router";
 
 import CategoryListing from "@/components/Category/CategoryListing.vue";
 import CategoryData from "@/Data/Categories.json";
@@ -33,10 +34,10 @@ const categories = ref(CategoryData);
   </section>
 
   <section v-if="showButton" class="m-auto max-w-lg my-10 px-6">
-    <a
-      href="/categories"
+    <RouterLink
+      to="/categories"
       class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
-      >View All Categories</a
+      >View All Categories</RouterLink
     >
   </section>
 </template>

@@ -1,4 +1,11 @@
 <script setup>
+import { RouterLink, useRoute } from "vue-router";
+
+const isActiveLink = (routePath) => {
+  const route = useRoute();
+
+  return route.path === routePath;
+};
 </script>
 
 <template>
@@ -9,28 +16,49 @@
           class="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
         >
           <!-- Logo -->
-          <a class="flex flex-shrink-0 items-center mr-4" href="/">
+          <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
             <!-- <img class="h-10 w-auto" :src="logo" alt="Vue Jobs" /> -->
             <span class="hidden md:block text-white text-2xl font-bold ml-2"
               >A7 Vehicles</span
             >
-          </a>
+          </RouterLink>
           <div class="md:ml-auto">
             <div class="flex space-x-2">
-              <a
-                href="/"
-                class="bg-amber-900 text-white  px-3 py-2 rounded-md"
-                >Home</a
+              <RouterLink
+                to="/"
+                :class="[
+                  isActiveLink('/')
+                    ? 'bg-amber-900'
+                    : 'hover:bg-amber-600 hover:text-white',
+                  'text-white font-bold',
+                  'px-3 py-2',
+                  'rounded-md',
+                ]"
+                >Home</RouterLink
               >
-              <a
-                href="/categories"
-                class="bg-amber-900 text-white  px-3 py-2 rounded-md"
-                >Categories</a
+              <RouterLink
+                to="/categories"
+                :class="[
+                  isActiveLink('/categories')
+                    ? 'bg-amber-900'
+                    : 'hover:bg-amber-600 hover:text-white',
+                  'text-white font-bold',
+                  'px-3 py-2',
+                  'rounded-md',
+                ]"
+                >Categories</RouterLink
               >
-              <a
-                href="/book"
-                class="bg-amber-900 text-white  px-3 py-2 rounded-md"
-                >Booking</a
+              <RouterLink
+                to="/book"
+                :class="[
+                  isActiveLink('/book')
+                    ? 'bg-amber-900'
+                    : 'hover:bg-amber-600 hover:text-white',
+                  'text-white font-bold',
+                  'px-3 py-2',
+                  'rounded-md',
+                ]"
+                >Booking</RouterLink
               >
             </div>
           </div>

@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
+import { RouterLink } from 'vue-router';
 
 defineProps({
   category: Object,
@@ -19,12 +20,12 @@ defineProps({
         <img :src="category.image" alt="">
       </div>
 
-      <a
-        :href="'/category/' + category.name"
+      <RouterLink
+        :to="'/category/' + category.name"
         class="h-[36px] bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-center text-sm"
       >
         Show More
-      </a>
+      </RouterLink>
     </div>
   </div>
 </template>
