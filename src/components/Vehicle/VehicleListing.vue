@@ -11,7 +11,7 @@ defineProps({
   <div class="bg-white rounded-xl shadow-md relative">
     <div class="p-4">
       <div class="mb-6">
-        <img :src="vehicle.image" />
+        <img :src="vehicle.picture" />
       </div>
 
       <div class="flex flex-row justify-between mb-4">
@@ -36,7 +36,7 @@ defineProps({
         </div>
       </div>
 
-      <h3 class="text-green-500 mb-2">{{ vehicle.price }} / Day</h3>
+      <h3 class="text-green-500 mb-2">{{ vehicle.rentalPricePerDay }} / Day</h3>
 
       <div class="border border-gray-100 mb-5"></div>
 
