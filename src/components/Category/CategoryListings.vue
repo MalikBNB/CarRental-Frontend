@@ -1,9 +1,10 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { reactive, defineProps, onMounted } from "vue";
 import { RouterLink } from "vue-router";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import axios from "axios";
 
 import CategoryListing from "@/components/Category/CategoryListing.vue";
-import CategoryData from "@/Data/Categories.json";
 
 defineProps({
   limit: Number,
@@ -13,19 +14,43 @@ defineProps({
   },
 });
 
-const categories = ref(CategoryData);
+const state = reactive({
+  categories: [],
+  isLoading: true,
+});
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(
+      "https://localhost:7284/api/CarCategories"
+    );
+    state.categories = response.data["content"];
+    console.log(state.categories);
+  } catch (error) {
+    console.error("Error fetching Categories!", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
 </script>
 
 <template>
-  <section class="bg-blue-50 px-4 py-10">
+  <section class="bg-amber-50 px-4 py-10">
     <div class="container-xl lg:container m-auto">
       <h2 class="text-3xl font-bold text-amber-500 mb-6 text-center">
         Browse Categories
       </h2>
 
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div v-if="state.isLoading" class="text-center text-red-500 py-6">
+        <PulseLoader />
+      </div>
+
+      <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <CategoryListing
-          v-for="category in categories.slice(0, limit || categories.length)"
+          v-for="category in state.categories.slice(
+            0,
+            limit || state.categories.length
+          )"
           :key="category.id"
           :category="category"
         />

@@ -13,7 +13,7 @@ defineProps({
   <section>
     <div class="container m-auto py-6 px-6">
       <RouterLink
-        :to="'/vehicles/' + { category }"
+        :to="'/vehicles/' + category"
         class="text-amber-500 hover:text-amber-600 flex items-center"
       >
         <i class="pi pi-arrow-circle-left mr-3"></i> Back to vehicle listings
