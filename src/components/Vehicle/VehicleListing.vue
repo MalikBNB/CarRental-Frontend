@@ -14,15 +14,15 @@ defineProps({
         <img :src="vehicle.picture" />
       </div>
 
-      <div class="flex flex-row justify-between mb-4">
+      <div class="flex justify-between mb-4">
         <div>
           <h3 class="text-xl font-bold">{{ vehicle.model }}</h3>
           <div class="text-gray-600">{{ vehicle.make }}</div>
         </div>
         <div
-          :class="
-            vehicle.isAvailableForRent ? 'text-green-500' : 'text-red-500'
-          "
+          :class="[
+            vehicle.isAvailableForRent ? 'text-green-500' : 'text-red-500',
+          ]"
         >
           {{ vehicle.isAvailableForRent ? "Available" : "Not Available" }}
         </div>
@@ -41,7 +41,7 @@ defineProps({
       <div class="border border-gray-100 mb-5"></div>
 
       <RouterLink
-        :to="'/booking/' + vehicle.id"
+        :to="'/vehicle/' + vehicle.id"
         class="h-[36px] block mx-10 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-center"
       >
         Book

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import CategoriesView from "@/views/CategoriesView.vue";
 import VehiclesView from "@/views/VehiclesView.vue";
+import VehicleView from "@/views/VehicleView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 
 const router = createRouter({
@@ -21,6 +22,11 @@ const router = createRouter({
       path: "/vehicles/:category",
       name: "vehicles",
       component: VehiclesView,
+    },
+    {
+      path: "/vehicle/:id",
+      name: "vehicle",
+      component: VehicleView,
     },
     {
       path: "/:catchAll(.*)",

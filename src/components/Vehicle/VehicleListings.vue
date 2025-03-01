@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, onMounted } from "vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
 
 import VehicleListing from "@/components/Vehicle/VehicleListing.vue";
@@ -30,7 +31,12 @@ onMounted(async () => {
         Browse Vehicles
       </h2>
 
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <!-- Show loading spinner while loading is true -->
+      <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+        <PulseLoader />
+      </div>
+
+      <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <VehicleListing
           v-for="vehicle in state.vehicles"
           :key="vehicle.id"
