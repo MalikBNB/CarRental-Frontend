@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
@@ -9,25 +9,36 @@ const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 
-const form = reactive({
-  categoryName: "",
-  picture: [],
-});
+const categoryId = route.params.id;
 
 const state = reactive({
   category: {},
   isLoading: true,
 });
 
-const categoryId = route.params.id;
+const form = reactive({
+  categoryName: "",
+  picture: [],
+});
+
+const selectedImage = ref("No image chosen");
+
+const setImagePath = (e) => {
+  var file = e.target.files[0] || e.dataTransfer.files[0];
+
+  selectedImage.value = file.name;
+  form.picture = URL.createObjectURL(file);
+
+  console.log(form.picture);
+};
 
 const handleSubmit = async () => {
   const updatedCategory = {
-    name: form.categoryName,
+    CategoryName: form.categoryName,
     picture: form.picture,
   };
 
-  const response = Object;
+  var response;
 
   try {
     response = await axios.put(
@@ -37,7 +48,7 @@ const handleSubmit = async () => {
     toast.success("Category updated successfully.");
     router.push("/categories");
   } catch (error) {
-    console.error("Error updating category!", error, response.data);
+    console.error("Error updating category!", response.data["error"]);
     toast.error("Updating category faild!");
   }
 };
@@ -73,19 +84,44 @@ onMounted(async () => {
         <form @submit.prevent="handleSubmit">
           <h2 class="text-3xl text-center font-semibold mb-6">Edit Category</h2>
 
-          <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2">
-              Category name
-            </label>
-            <input
-              v-model="form.categoryName"
-              type="text"
-              id="categoryName"
-              name="categoryName"
-              class="border rounded w-full py-2 px-3 mb-2"
-              placeholder="eg. Truck"
-              required
-            />
+          <div class="flex flex-col-reverse items-center">
+            <div class="w-full mb-4 mr-4">
+              <label class="block text-gray-700 font-bold mb-2">
+                Category name
+              </label>
+              <input
+                v-model="form.categoryName"
+                type="text"
+                id="categoryName"
+                name="categoryName"
+                class="border rounded w-full py-2 px-3 mb-2"
+                placeholder="eg. Truck"
+                required
+              />
+            </div>
+
+            <div class="flex flex-col justify-between">
+              <div class="border-dashed border-amber-600 mb-2 overflow-hidden">
+                <img :src="form.picture" alt="category picture" />
+              </div>
+              <div class="flex flex-row items-center mb-4">
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  @change="(e) => setImagePath(e)"
+                  hidden
+                />
+                <label
+                  for="image-upload"
+                  class="block text-sm text-amber-500 mr-4 py-2 px-4 rounded-md border-0 font-semibold bg-amber-50 text-amber-700 hover:bg-amber-100 cursor-pointer"
+                  >Upload image</label
+                >
+                <label class="text-sm text-amber-500">
+                  {{ selectedImage }}</label
+                >
+              </div>
+            </div>
           </div>
 
           <div>
@@ -99,5 +135,21 @@ onMounted(async () => {
         </form>
       </div>
     </div>
+
+    <!-- <div class="mt-4 flex text-sm/6 text-gray-600">
+      <label
+        for="file-upload"
+        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+      >
+        <span>Upload a file</span>
+        <input
+          id="file-upload"
+          name="file-upload"
+          type="file"
+          class="sr-only"
+        />
+      </label>
+      <p class="pl-1">or drag and drop</p>
+    </div> -->
   </section>
 </template>

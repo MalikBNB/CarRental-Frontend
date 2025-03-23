@@ -43,14 +43,14 @@ const askForDelete = (id) => {
 </script>
 
 <template>
-  <div class="bg-white rounded-xl shadow-md relative">
-    <div class="p-4">
+  <div class="bg-white rounded-xl shadow-md">
+    <div class="flex flex-col justify-between p-4">
       <div class="flex justify-between">
-        <!-- Category -->
         <div class="mb-6">
           <h3 class="text-xl font-bold">{{ category.categoryName }}</h3>
         </div>
 
+        <!-- Add / Edit / Delete -->
         <div>
           <RouterLink :to="'/categories/add'">
             <i
@@ -70,16 +70,19 @@ const askForDelete = (id) => {
         </div>
       </div>
 
-      <!-- Description -->
-      <div class="mb-5">
-        <img src="https://placehold.co/400x250" alt="" />
+      <div class="mb-5 h-60 overflow-hidden">
+        <img
+          :src="category.picture"
+          :alt="category.categoryName"
+          class="w-full h-full"
+        />
       </div>
 
       <RouterLink
         :to="'/vehicles/' + category.categoryName"
         class="h-[36px] bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-center text-sm"
       >
-        Show More
+        Show Vehicles
       </RouterLink>
     </div>
   </div>

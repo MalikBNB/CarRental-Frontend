@@ -87,7 +87,7 @@ const askForDelete = () => {
           <div
             class="flex items-center justify-between bg-white p-6 rounded-lg shadow-md text-center md:text-left"
           >
-            <div>
+            <div class="text-center">
               <h1 class="text-3xl font-bold">{{ state.vehicle.model }}</h1>
               <div class="text-gray-500">{{ state.vehicle.make }}</div>
             </div>
