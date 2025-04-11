@@ -6,7 +6,9 @@ defineProps({
   path: {
     type: String,
   },
-  title: String,
+  title: {
+    type: String,
+  },
 });
 </script>
 
@@ -15,9 +17,9 @@ defineProps({
     <div class="container m-auto py-6 px-6">
       <RouterLink
         :to="path"
-        class="text-amber-500 hover:text-amber-600 font-bold flex items-center"
+        class="text-green-500 hover:text-green-600 font-bold flex items-center"
       >
-        <i class="pi pi-arrow-circle-left mr-3"></i> {{ title }}
+        <i class="pi pi-plus-circle mr-3"></i> {{ title }}
       </RouterLink>
     </div>
   </section>

@@ -50,13 +50,8 @@ const askForDelete = (id) => {
           <h3 class="text-xl font-bold">{{ category.categoryName }}</h3>
         </div>
 
-        <!-- Add / Edit / Delete -->
+        <!-- Edit / Delete -->
         <div>
-          <RouterLink :to="'/categories/add'">
-            <i
-              class="pi pi-plus-circle bg-green-500 hover:bg-green-600 p-1 rounded text-white"
-            ></i>
-          </RouterLink>
           <RouterLink :to="'/categories/edit/' + category.id">
             <i
               class="pi pi-pencil ml-4 bg-amber-500 hover:bg-amber-600 p-1 rounded text-white"

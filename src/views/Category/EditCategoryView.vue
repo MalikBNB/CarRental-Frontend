@@ -5,6 +5,8 @@ import { useToast } from "vue-toastification";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
 
+import BackButton from "@/components/BackButton.vue";
+
 const route = useRoute();
 const router = useRouter();
 const toast = useToast();
@@ -23,13 +25,16 @@ const form = reactive({
 
 const selectedImage = ref("No image chosen");
 
-const setImagePath = (e) => {
+const convertImageToBase64 = (e) => {
   var file = e.target.files[0] || e.dataTransfer.files[0];
 
-  selectedImage.value = file.name;
-  form.picture = URL.createObjectURL(file);
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.addEventListener("load", () => {
+    form.picture = reader.result;
+  });
 
-  console.log(form.picture);
+  selectedImage.value = file.name;
 };
 
 const handleSubmit = async () => {
@@ -71,6 +76,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <BackButton path="/categories" title="Back to categories"/>
+
   <section class="bg-amber-50">
     <!-- Show loading spinner while loading is true -->
     <div v-if="state.isLoading" class="text-center text-amber-500 py-6">
@@ -109,7 +116,7 @@ onMounted(async () => {
                   id="image-upload"
                   type="file"
                   accept="image/*"
-                  @change="(e) => setImagePath(e)"
+                  @change="(e) => convertImageToBase64(e)"
                   hidden
                 />
                 <label
@@ -135,21 +142,5 @@ onMounted(async () => {
         </form>
       </div>
     </div>
-
-    <!-- <div class="mt-4 flex text-sm/6 text-gray-600">
-      <label
-        for="file-upload"
-        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-      >
-        <span>Upload a file</span>
-        <input
-          id="file-upload"
-          name="file-upload"
-          type="file"
-          class="sr-only"
-        />
-      </label>
-      <p class="pl-1">or drag and drop</p>
-    </div> -->
   </section>
 </template>

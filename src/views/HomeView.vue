@@ -5,5 +5,5 @@ import CategoryListings from "@/components/Category/CategoryListings.vue";
 
 <template>
   <Hero />
-  <CategoryListings :limit="6" :show-button="true" />
+  <CategoryListings :limit="3" :show-button="true" />
 </template>
