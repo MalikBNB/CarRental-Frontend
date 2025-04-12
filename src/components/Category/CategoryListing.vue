@@ -65,7 +65,7 @@ const askForDelete = (id) => {
         </div>
       </div>
 
-      <div class="mb-5 h-60 overflow-hidden">
+      <div class="mb-5 h-52 overflow-hidden">
         <img
           :src="category.picture"
           :alt="category.categoryName"
@@ -74,7 +74,7 @@ const askForDelete = (id) => {
       </div>
 
       <RouterLink
-        :to="'/vehicles/' + category.categoryName"
+        :to="`/vehicles/${category.categoryName}`"
         class="h-[36px] bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-center text-sm"
       >
         Show Vehicles

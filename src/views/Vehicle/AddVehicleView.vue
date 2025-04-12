@@ -2,7 +2,7 @@
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import BackButton from "@/components/BackButton.vue";
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
 
@@ -10,10 +10,15 @@ const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 
-const category = route.params.category;
+const categoryName = route.params.category;
 
 const isLoading = ref(false);
 const selectedImage = ref("No image chosen");
+
+const state = reactive({
+  category: {},
+  isLoading: true,
+});
 
 const form = reactive({
   Make: "",
@@ -23,7 +28,6 @@ const form = reactive({
   Mileage: 0,
   FuelType: "",
   PlateNumber: "",
-  CarCategoryId: "",
   RentalPricePerDay: 0.0,
   IsAvailableForRent: false,
 });
@@ -49,7 +53,7 @@ const handleSubmit = async () => {
     Mileage: form.Mileage,
     FuelType: parseInt(form.FuelType),
     PlateNumber: form.PlateNumber,
-    CarCategoryId: "3A7D2AB8-0B0C-48D1-1439-08DD4DFFCCE4", //form.CarCategoryId,
+    CarCategoryId: state.category.id,
     RentalPricePerDay: form.RentalPricePerDay,
     IsAvailableForRent: form.IsAvailableForRent,
   };
@@ -58,31 +62,45 @@ const handleSubmit = async () => {
 
   try {
     isLoading.value = true;
-    console.log(newVehicle);
     response = await axios.post(
       "https://localhost:7284/api/Vehicles",
       newVehicle
     );
     toast.success("Vehicle added successfully.");
-    router.push(`/vehicles/${category}`);
+    router.push(`/vehicles/${categoryName}`);
   } catch (error) {
     console.error("Error adding new vehicle!", error);
-    console.log(response.data);
     toast.error("Adding new vehicle faild!");
   } finally {
     isLoading.value = false;
   }
 };
+
+onMounted(async () => {
+  try {
+    var response = await axios.get(
+      `https://localhost:7284/api/CarCategories/${categoryName}`
+    );
+    state.category = response.data["content"];
+  } catch (error) {
+    console.error("Error fetching Categories!", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
 </script>
 
 <template>
   <BackButton
-    :path="`/vehicles/${category}`"
+    :path="`/vehicles/${categoryName}`"
     title="Back to vehicle listings"
   />
   <section class="bg-amber-50">
     <!-- Show loading spinner while loading is true -->
-    <div v-if="isLoading" class="text-center text-amber-500 py-6">
+    <div
+      v-if="isLoading || state.isLoading"
+      class="text-center text-amber-500 py-6"
+    >
       <PulseLoader />
     </div>
 

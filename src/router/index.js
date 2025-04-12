@@ -5,8 +5,8 @@ import AddCategoryView from "@/views/Category/AddCategoryView.vue";
 import EditCategoryView from "@/views/Category/EditCategoryView.vue";
 import VehiclesView from "@/views/Vehicle/VehiclesView.vue";
 import VehicleView from "@/views/Vehicle/VehicleView.vue";
-import AddVehicleView from "@/views/Vehicle/AddVehicleView.vue"
-import EditVehicleView from "@/views/Vehicle/EditVehicleView.vue"
+import AddVehicleView from "@/views/Vehicle/AddVehicleView.vue";
+import EditVehicleView from "@/views/Vehicle/EditVehicleView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 
 const router = createRouter({

@@ -25,7 +25,6 @@ onMounted(async () => {
       "https://localhost:7284/api/CarCategories"
     );
     state.categories = response.data["content"];
-    console.log(state.categories);
   } catch (error) {
     console.error("Error fetching Categories!", error);
   } finally {

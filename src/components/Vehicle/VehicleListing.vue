@@ -27,7 +27,7 @@ function fuleType(enumIndex) {
     <div class="p-4">
       <div class="flex flex-col justify-between mb-4">
         <div class="flex justify-between mb-4">
-          <div class="text-center">
+          <div>
             <h3 class="text-xl font-bold">{{ vehicle.model }}</h3>
             <div class="text-gray-600">{{ vehicle.make }}</div>
           </div>
@@ -58,12 +58,13 @@ function fuleType(enumIndex) {
       </div>
 
       <div class="flex justify-between">
-        <h3 class="text-green-500 mb-2">
+        <h3 class="text-green-500 font-bold mb-2">
           {{ vehicle.rentalPricePerDay }} / Day
         </h3>
         <div
           :class="[
             vehicle.isAvailableForRent ? 'text-green-500' : 'text-red-500',
+            'font-bold'
           ]"
         >
           {{ vehicle.isAvailableForRent ? "Available" : "Not Available" }}

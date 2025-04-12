@@ -10,6 +10,7 @@ import VehicleListing from "@/components/Vehicle/VehicleListing.vue";
 const route = useRoute();
 
 const category = route.params.category;
+const categoryId = route.params.categoryId;
 
 const state = reactive({
   vehicles: [],
@@ -22,7 +23,6 @@ onMounted(async () => {
       `https://localhost:7284/api/Vehicles?category=${category}`
     );
     state.vehicles = response.data["content"];
-    console.log(response.data);
   } catch (error) {
     console.error("Error fetching vehicles", error);
   } finally {
@@ -32,7 +32,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AddButton :path="`/vehicles/${category}/add`" title="Add vehicle" />
+  <AddButton
+    :path="`/vehicles/${category}/add`"
+    title="Add vehicle"
+  />
 
   <section class="bg-amber-50 px-4 py-10">
     <div class="container-xl lg:container m-auto">
