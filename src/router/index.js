@@ -5,6 +5,8 @@ import AddCategoryView from "@/views/Category/AddCategoryView.vue";
 import EditCategoryView from "@/views/Category/EditCategoryView.vue";
 import VehiclesView from "@/views/Vehicle/VehiclesView.vue";
 import VehicleView from "@/views/Vehicle/VehicleView.vue";
+import AddVehicleView from "@/views/Vehicle/AddVehicleView.vue"
+import EditVehicleView from "@/views/Vehicle/EditVehicleView.vue"
 import NotFoundView from "@/views/NotFoundView.vue";
 
 const router = createRouter({
@@ -39,6 +41,16 @@ const router = createRouter({
       path: "/vehicle/:id",
       name: "vehicle",
       component: VehicleView,
+    },
+    {
+      path: "/vehicles/:category/edit/:id",
+      name: "edit-vehicle",
+      component: EditVehicleView,
+    },
+    {
+      path: "/vehicles/:category/add",
+      name: "add-vehicle",
+      component: AddVehicleView,
     },
     {
       path: "/:catchAll(.*)",

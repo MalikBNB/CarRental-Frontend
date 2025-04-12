@@ -31,13 +31,6 @@ function fuleType(enumIndex) {
             <h3 class="text-xl font-bold">{{ vehicle.model }}</h3>
             <div class="text-gray-600">{{ vehicle.make }}</div>
           </div>
-
-          <!-- Add vehicle -->
-          <RouterLink :to="'/vehicles/' + vehicle.CarCategory + '/add'" class="self-center">
-            <i
-              class="pi pi-plus-circle bg-green-500 hover:bg-green-600 p-1 rounded text-white"
-            ></i>
-          </RouterLink>
         </div>
 
         <div class="overflow-hidden h-48 mb-4">
@@ -61,10 +54,6 @@ function fuleType(enumIndex) {
             <p class="text-gray-500">Fuel type</p>
             <p>{{ fuleType(vehicle.fuelType) }}</p>
           </div>
-          <!-- <div class="flex flex-col items-center">
-            <p class="text-gray-500">Plate number</p>
-            <p>{{ vehicle.plateNumber }}</p>
-          </div> -->
         </div>
       </div>
 

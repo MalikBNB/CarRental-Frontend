@@ -4,8 +4,8 @@ import { useRoute } from "vue-router";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
 
+import AddButton from "@/components/AddButton.vue";
 import VehicleListing from "@/components/Vehicle/VehicleListing.vue";
-// import VehiclesData from "@/Data/Vehicles.json";
 
 const route = useRoute();
 
@@ -18,7 +18,9 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`https://localhost:7284/api/Vehicles?category=${category}`);
+    const response = await axios.get(
+      `https://localhost:7284/api/Vehicles?category=${category}`
+    );
     state.vehicles = response.data["content"];
     console.log(response.data);
   } catch (error) {
@@ -30,6 +32,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <AddButton :path="`/vehicles/${category}/add`" title="Add vehicle" />
+
   <section class="bg-amber-50 px-4 py-10">
     <div class="container-xl lg:container m-auto">
       <h2 class="text-3xl font-bold text-center text-amber-500 mb-6">

@@ -57,7 +57,6 @@ const handleSubmit = async () => {
 
 <template>
   <BackButton path="/categories" title="Back to categories" />
-
   <section class="bg-amber-50">
     <!-- Show loading spinner while loading is true -->
     <div v-if="isLoading" class="text-center text-amber-500 py-6">
