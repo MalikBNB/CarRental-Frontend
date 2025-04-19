@@ -262,7 +262,7 @@ onMounted(async () => {
 
           <div>
             <button
-              class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full w-full foucus:outline-none focus:shadow-outline"
+              class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Add Vehicle
