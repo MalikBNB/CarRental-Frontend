@@ -2,29 +2,42 @@
 import { RouterLink, useRoute } from "vue-router";
 import { defineProps } from "vue";
 
-const isActiveLink = (routePath) => {
-  const route = useRoute();
+const route = useRoute();
 
+const isActiveLink = (routePath) => {
   return route.path === routePath;
 };
 
+const showIt = () => {
+  if (props.isLogoutButton) {
+    if (route.path === "/") return false;
+    else return localStorage.getItem("isLoggedIn");
+  } else return true;
+};
+
 defineProps({
-  path: String,
-  content: String,
+  props: {
+    path: String,
+    content: String,
+    isLogoutButton: Boolean,
+  },
 });
 </script>
 
 <template>
   <RouterLink
-    :to="path"
+    :to="props.path"
     :class="[
-      isActiveLink(path)
+      isActiveLink(props.path)
         ? 'bg-amber-900'
         : 'hover:bg-amber-600 hover:text-white',
       'text-white font-bold',
       'px-3 py-2',
       'rounded-md',
     ]"
-    >{{ content }}</RouterLink
+    v-show="showIt"
+    >{{ props.content }}</RouterLink
   >
+
+  <!--     v-show="props.isLogoutButton ? (showIt() ? true : false) : true" -->
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 import NavBarButton from "./NavBarButton.vue";
 </script>
 
@@ -20,10 +20,41 @@ import NavBarButton from "./NavBarButton.vue";
 
           <div class="md:ml-auto">
             <div class="flex space-x-2">
-              <NavBarButton path="/home" content="Home"/>
-              <NavBarButton path="/categories" content="Categories"/>
-              <NavBarButton path="/booking" content="Booking"/>
-              
+              <NavBarButton
+                :props="{
+                  path: '/home',
+                  content: 'Home',
+                  isLogoutButton: false,
+                }"
+              />
+              <NavBarButton
+                :props="{
+                  path: '/categories',
+                  content: 'Categories',
+                  isLogoutButton: false,
+                }"
+              />
+              <NavBarButton
+                :props="{
+                  path: '/booking',
+                  content: 'Booking',
+                  isLogoutButton: false,
+                }"
+              />
+              <!-- <NavBarButton
+                :props="{ path: '/', content: 'Log out', isLogoutButton: true }"
+              /> -->
+              <NavBarButton
+                :props="{ path: '/', content: 'Log in', isLogoutButton: false }"
+              />
+              <NavBarButton
+                :props="{
+                  path: '/sign-up',
+                  content: 'Sign up',
+                  isLogoutButton: false,
+                }"
+              />
+
               <!-- <RouterLink
                 to="/categories"
                 :class="[

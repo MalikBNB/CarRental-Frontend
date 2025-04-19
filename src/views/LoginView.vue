@@ -8,7 +8,7 @@ import axios from "axios";
 
 const router = useRouter();
 
-const rememberMe = reactive(false);
+const rememberMe = ref(false);
 const isLoading = ref(false);
 const isNotValidUser = ref(false);
 
@@ -48,9 +48,8 @@ const logIn = async () => {
       localStorage.setItem("Token", state.authModel.token);
       localStorage.setItem("Roles", state.authModel.roles);
 
-      console.log(rememberMe);
-      if (rememberMe) {
-        console.log("inside");
+      console.log(rememberMe.value);
+      if (rememberMe.value) {
         localStorage.setItem("Username", user.username);
         localStorage.setItem("Password", user.password);
       }
@@ -75,7 +74,7 @@ onMounted(() => {
     user.username = username;
     user.password = password;
 
-    rememberMe = true;
+    rememberMe.value = true;
   }
 });
 </script>
@@ -106,7 +105,6 @@ onMounted(() => {
                   >*Invalid email or password!</label
                 >
               </div>
-
               <input
                 v-model="user.username"
                 type="text"
@@ -138,9 +136,9 @@ onMounted(() => {
                 type="checkbox"
                 id="rememberMe"
                 name="rememberMe"
-                :checked="rememberMe"
+                v-model="rememberMe"
               />
-              <label class="text-gray-700 font-bold mb-2 ml-2"
+              <label class="text-gray-700 font-bold mb-2 ml-2" for="rememberMe"
                 >Remember Me</label
               >
             </div>
